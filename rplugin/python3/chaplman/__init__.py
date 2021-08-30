@@ -1,10 +1,9 @@
 import pynvim
-from pynvim.api.nvim import Nvim
 
 
 @pynvim.plugin
-class PynvimTest(object):
-    def __init__(self, nvim: Nvim):
+class Chaplman(object):
+    def __init__(self, nvim):
         self.nvim = nvim
 
     def vimecho(self, msg):
@@ -13,3 +12,8 @@ class PynvimTest(object):
     @pynvim.command('ChaplmanTest')
     def testcommand(self):
         self.nvim.out_write("Chaplman : test\n")
+
+    @pynvim.function('Getplugins')
+    def getplugins(self, args):
+        self.nvim.current.line = (
+            'Func %s' % (args))
