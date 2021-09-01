@@ -13,5 +13,7 @@ function chaplman#loadsetting()
 endfunction
 
 function chaplman#loadjson(filepath)
-  let l:json_array = execute("call readfile(a:filepath)")
+  let l:json_array = readfile(a:filepath)
+  let l:json = join(l:json_array,'')
+  let l:json_obj = json_decode(l:json)
 endfunction
