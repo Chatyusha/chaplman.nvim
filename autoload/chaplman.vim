@@ -16,4 +16,24 @@ function chaplman#loadjson(filepath)
   let l:json_array = readfile(a:filepath)
   let l:json = join(l:json_array,'')
   let l:json_obj = json_decode(l:json)
+  "
+  "{
+  " "plugins":[
+  "   "plugin":{
+  "     "repo":"Chatyusha/Chaplman.vim",
+  "     "source":[
+  "       "VIM SCRIPTS",
+  "       "VIM SCRIPTS"
+  "     ]
+  "   }
+  " ]
+  "}
+  "
+  let l:plugins = l:json_obj["plugins"]
 endfunction
+
+function chaplman#loadplugin(params)
+ let l:repo = a:params["repo"]
+ let l:scr = a:params["source"]
+endfunction
+
