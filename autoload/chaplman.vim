@@ -3,7 +3,7 @@ scriptencoding utf-8
 "Where si this plugin?"
 let s:chaplpath = expand("<sfile>:p:h:h")
 
-function chaplman#install(chaplman_root,status)
+function! chaplman#install(chaplman_root,status) abort
   let l:repo = a:status["repo"]
   let l:branch = a:status["branch"]
   let l:plugin_path = a:chaplman_root . "/repo/" . a:status["repo"]

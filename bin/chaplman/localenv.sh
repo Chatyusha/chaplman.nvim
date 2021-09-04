@@ -13,6 +13,7 @@ do
   cp -rf $i/* ./
   mv README.md "./READMES/README-$(basename $i)"
   find ./ -maxdepth 1 -and \( -name LICENCE -or -name LICENSE \) | xargs -I % bash -c "mv % ./LISENSES/%-$(basename $i)"
+  cd $i
 done
 
 rm -rf .git/ .github/ .gitignore
