@@ -1,5 +1,8 @@
 scriptencoding utf-8
 
+"Where si this plugin?"
+let s:chaplpath = expand("<sfile>:p:h:h")
+
 function chaplman#install(chaplman_root,status)
   let l:repo = a:status["repo"]
   let l:branch = a:status["branch"]
@@ -37,3 +40,12 @@ function chaplman#loadplugin(params)
  let l:scr = a:params["source"]
 endfunction
 
+function chaplman#buildenv(envroot,plugins)
+  "ALL ARGS ARE FULL-PATH FORMAT
+  let l:envroot = a:envroot
+  let l:plgins = a:plugins
+  let l:shell_script = s:chaplpath . "/bin/chaplman/localenv.sh"
+  echo l:shell_script
+  echo s:chaplpath
+  call system([l:shell_script, l:envroot] + l:plgins)
+endfunction
