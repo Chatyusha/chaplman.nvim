@@ -1,1 +1,21 @@
 *chaplman.txt*
+
+================================================================
+CONTENTS                                *chaplman-contents*
+
+- Introduction  |chaplman-introduction|
+- Usage         |chaplman-usage|
+- Commands      |chaplman-commands|
+- Functions     |chaplman-functions|
+
+================================================================
+Introduction                            *chaplman-Introduction*
+
+*chaplman* is a plugin manager for vim/neovim.
+================================================================
+Usage                                   *chaplman-usage*
+================================================================
+Commands                                *chaplman-commands*
+================================================================
+Functions                               *chaplman-functions*
+================================================================

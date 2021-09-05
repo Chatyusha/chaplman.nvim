@@ -1,4 +1,4 @@
-scriptencoding utf-8
+scriptencoding=utf-8
 
 "Where si this plugin?"
 let s:chaplpath = expand("<sfile>:p:h:h")
@@ -10,7 +10,8 @@ function! chaplman#install(chaplman_root,status) abort
 endfunction
 
 function chaplman#loadsetting()
-  let l:envroot = pwd . "/.chaplman"
+  let l:envroot = getcwd() . "/.chaplman"
+  echo l:envroot
   if isdirectory(l:envroot) == 0
     call mkdir(l:envroot)
   endif
@@ -19,7 +20,7 @@ function chaplman#loadsetting()
   endif
   let l:settingsfile = l:envroot . "/settings.json"
   if chaplman#formatchacker(l:settingsfile) != -1
-    call chaplman#loadplugin(l:settingsfile)
+    call chaplman#loadplugin(l:envroot, l:settingsfile)
   endif
 endfunction
 
@@ -57,7 +58,7 @@ function chaplman#loadplugin(envroot, settingfilepath)
   call chaplman#buildenv(a:envroot,l:data["repos"])
   call chaplman#writesettings(a:envroot,l:data["sources"])
   execute("set runtimepath+=".a:envroot)
-  runtime "./settings.vim"
+  execute("runtime ./settings.vim")
 endfunction
 
 function chaplman#buildenv(envroot,plugins)
@@ -124,4 +125,7 @@ function! chaplman#formatchacker(settingsfilepath) abort
     return -1
   endif
   return 1
+endfunction
+
+function! chaplman#init() abort
 endfunction
