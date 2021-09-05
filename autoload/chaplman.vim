@@ -21,6 +21,7 @@ function chaplman#loadsetting()
   let l:settingsfile = l:envroot . "/settings.json"
   if chaplman#formatchacker(l:settingsfile) != -1
     call chaplman#loadplugin(l:envroot, l:settingsfile)
+    execute("runtime! ./plugin/*.vim")
   endif
 endfunction
 
