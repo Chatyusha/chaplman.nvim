@@ -16,11 +16,11 @@ fi
 mkdir "$TARGET_DIR"
 cd "$TARGET_DIR"
 mkdir -p "repo/github.com/Chatyusha"
-git clone "https://github.com/Chatyusha/chaplman.nvim.git" "repo/github.com/Chatyusha/chaplman.nvim"
+git clone "https://github.com/Chatyusha/chaplman.vim.git" "repo/github.com/Chatyusha/chaplman.vim"
 
 echo "--init.vim--------------------------------"
 echo ""
-echo "set runtimepath+=$TARGET_DIR/repo/github.com/Chatyusha/chaplman.nvim"
+echo "set runtimepath+=$TARGET_DIR/repo/github.com/Chatyusha/chaplman.vim"
 echo ""
 echo "------------------------------------------"
 
