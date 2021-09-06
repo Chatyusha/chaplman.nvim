@@ -9,19 +9,29 @@ function! chaplman#install(chaplman_root,status) abort
   let l:plugin_path = a:chaplman_root . "/repo/" . a:status["repo"]
 endfunction
 
-function chaplman#loadsetting()
+function! chaplman#default() abort
   let l:envroot = getcwd() . "/.chaplman"
-  echo l:envroot
   if isdirectory(l:envroot) == 0
     call mkdir(l:envroot)
   endif
   if glob(l:envroot . "/settings.json") == ""
     call writefile([],l:envroot . "/settings.json")
   endif
+endfunction
+
+function! chaplman#loadsetting() abort
+  let l:envroot = getcwd() . "/.chaplman"
   let l:settingsfile = l:envroot . "/settings.json"
-  if chaplman#formatchacker(l:settingsfile) != -1
+
+  if chaplman#formatchacker(l:settingsfile) != -1 &&
+        \ isdirectory(l:envroot) == 1 &&
+        \ glob(l:envroot . "/settings.json") != ""
+
     call chaplman#loadplugin(l:envroot, l:settingsfile)
     execute("runtime! ./plugin/*.vim")
+  else
+    echo "Error!"
+    echo "Cannot load settings"
   endif
 endfunction
 
@@ -44,12 +54,16 @@ function! chaplman#loadjson(filepath) abort
   "
   let l:plugins = l:json_obj["plugins"]
   let l:data = {"repos":[],"sources":[]}
-  for i in l:plugins
-    let l:repo = g:plugins_dir . "/" . i["repo"]
-    let l:source = i["source"]
-    let l:data["repos"] = l:data["repos"] + [l:repo]
-    let l:data["sources"] = l:data["sources"] + l:source
-  endfor
+  if exists('g:plugins_dir')
+    for i in l:plugins
+      let l:repo = g:plugins_dir . "/" . i["repo"]
+      let l:source = i["source"]
+      let l:data["repos"] = l:data["repos"] + [l:repo]
+      let l:data["sources"] = l:data["sources"] + l:source
+    endfor
+  else
+    echo "'g:plugins_dir' is not defined"
+  endif
   return l:data
 endfunction
 

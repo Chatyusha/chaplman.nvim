@@ -11,9 +11,21 @@ Please read help for details.
 
 ## Requirements
   
-  - Vim(version 8.0 or above) or Neovim
+  - Vim(version 8.0 or later) or Neovim
   - bash or zsh
 
-## Future Work
+## Usage
 
-  - Many many things!
+
+
+## Features
+
+  - You can write the configuration file with json.
+  - You can change the settings for each project.
+
+## Future Work
+  
+  - A system where plugins can be installed on the editor
+  - System to select plugins to load by filetype
+  - Plugin uninstaller
+
