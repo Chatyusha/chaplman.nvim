@@ -16,7 +16,28 @@ Please read help for details.
 
 ## Usage
 
+## Install
+  
+  1. Define insallation directory before you use chaplman. (default installation directory is `~/.cache/chaplman`) 
+    
+    Running below script, you can get chaplman and make installation directory easily.
+  
+For example, MacOS or Linux
 
+- MacOS/Linux
+
+  ```
+  curl https://raw.githubusercontent.com/Chatyusha/chaplman.vim/master/bin/installer.sh > installer.sh
+  # For example, we just use `~/.cache/chaplman` as installation directory.
+  sh ./install.sh ~/.cache/chaplman
+  ```
+
+## Example
+
+  ```vimrc/init.vim
+  set runtimepath+=~/.cache/chaplman/repo/github.com/Chatyusha/chaplman.vim
+  let g:plugins_dir=$HOME . "/.cache/chaplman/repo/github.com"
+  ```
 
 ## Features
 

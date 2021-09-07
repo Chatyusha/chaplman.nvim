@@ -4,7 +4,7 @@ TARGET_DIR="$1"
 IS_GIT="$(which git)"
 
 if [[ -z "$TARGET_DIR" ]];then
-  TARGET_DIR="$HOME/.chapl"
+  TARGET_DIR="$HOME/.cache/chapl"
 fi
 
 if [[ -z "$IS_GIT" ]];then
@@ -20,7 +20,8 @@ git clone "https://github.com/Chatyusha/chaplman.vim.git" "repo/github.com/Chaty
 
 echo "--init.vim--------------------------------"
 echo ""
-echo "set runtimepath+=$TARGET_DIR/repo/github.com/Chatyusha/chaplman.vim"
+echo "set runtimepath+=$(pwd)/repo/github.com/Chatyusha/chaplman.vim"
+echo "let g:plugins_dir = $(pwd)/repo/github.com"
 echo ""
 echo "------------------------------------------"
 
