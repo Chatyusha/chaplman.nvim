@@ -20,7 +20,7 @@ Please read help for details.
   
   1. Define insallation directory before you use chaplman. (default installation directory is `~/.cache/chaplman`) 
     
-    Running below script, you can get chaplman and make installation directory easily.
+  Running below script, you can get chaplman and make installation directory easily.
   
 For example, MacOS or Linux
 
