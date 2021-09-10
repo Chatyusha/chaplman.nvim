@@ -38,11 +38,12 @@ For example, MacOS or Linux
   set runtimepath+=~/.cache/chaplman/repo/github.com/Chatyusha/chaplman.vim
   let g:plugins_dir=$HOME . "/.cache/chaplman/repo/github.com"
   ```
+### DowloadPlugins
+
 ### settings
 
   Plese write the project settings on `./.chaplman/settings.json`.
-  
-  For example, if you use [Chatyusha/Hellovim.vim], first, run `:call chaplman#add('')
+ 
 
 ## Features
 
