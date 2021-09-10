@@ -144,3 +144,13 @@ endfunction
 
 function! chaplman#init() abort
 endfunction
+
+"{{{ Add Plugin }}}"
+
+function! chaplman#add(repo, ...) abort
+  let l:branch = get(a:,a:0,"")
+  let l:binpath = s:chaplpath . "/bin/chaplman/addplugin.sh"
+  echo l:binpath
+  echo system([l:binpath,g:plugins_dir,a:repo,l:branch])
+endfunction
+
