@@ -1,12 +1,12 @@
 let s:version = "1.0.0"
 let s:Author = "Chatyusha"
 let s:email = "hirounicat76@gmail.com"
-let s:Lisense = "MIT lisense"
+let s:License = "MIT license"
 let s:config = {
   \ "version":s:version,
   \ "author":s:Author,
   \ "email":s:email,
-  \ "lisense":s:Lisense
+  \ "license":s:License
   \}
 
 function! chaplman#config#config() abort
@@ -20,5 +20,5 @@ function! chaplman#config#showconfig() abort
   echo "Version : " . s:version
   echo "Author : " . s:Author
   echo "Email : " . s:email
-  echo "Lisense : " . s:Lisense
+  echo "License : " . s:License
 endfunction
