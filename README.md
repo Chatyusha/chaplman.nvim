@@ -40,10 +40,34 @@ For example, MacOS or Linux
   ```
 ### DowloadPlugins
 
+ To add a plugin, run `:call add('author/pluginname')`.
+
+ For example, to install [Chatyusha](https://github.com/Chatyusha/TestVimPlugin), 
+ `:call chaplman#add('Chatyusha/TestVimPlugin')`
+
 ### settings
 
   Plese write the project settings on `./.chaplman/settings.json`.
- 
+
+  For Example, [Chatyusha/TestVimPlugin](https://github.com/Chatyusha/TestVimPlugin)
+
+```settings.json
+  {
+    "plugins":[
+      {
+        "repo":"Chatyusha/TestVimPlugin",
+        "source":[
+          "let g:sample_name='Tanya'"
+        ]
+      }
+    ]
+  }
+```
+
+## Tutorial
+
+1. Install Chaplman
+
 
 ## Features
 
