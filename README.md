@@ -27,9 +27,10 @@ For example, MacOS or Linux
 - MacOS/Linux
 
   ```
-  curl https://raw.githubusercontent.com/Chatyusha/chaplman.vim/master/bin/installer.sh > installer.sh
+  curl -OL "https://raw.githubusercontent.com/Chatyusha/chaplman.vim/master/bin/chaplman/installer.sh"
+  chmod +x installer.sh
   # For example, we just use `~/.cache/chaplman` as installation directory.
-  sh ./install.sh ~/.cache/chaplman
+  ./install.sh ~/.cache/chaplman
   ```
 
 ## Example
@@ -68,6 +69,29 @@ For example, MacOS or Linux
 
 1. Install Chaplman
 
+3. Run `mkdir test` and `cd test`
+
+4. Open Vim/neovim and run the command: `:call chaplman#default()`
+
+5. To download a Plugin (example ,`Chatyusha/TestVimPlugin`) , run `:call chaplman#add('Chatyusha/TestVimPlugin')`
+
+6. Edit `./.chaplman/settings.json` like below (`:e ./.chaplman/settings.json`)
+  
+  ```settings.json
+    {
+      "plugins":[
+        {
+          "repo":"Chatyusha/TestVimPlugin",
+          "source":[
+            "let g:sample_name='Tanya'"
+          ]
+        }
+      ]
+    }
+  ```
+7. To load settings, run `:call chaplman#loadsettings()`
+
+8. Run the following command : `:Hello`,and if you see "Hello World!", you have succeeded.
 
 ## Features
 

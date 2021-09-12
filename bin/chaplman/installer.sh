@@ -21,7 +21,7 @@ git clone "https://github.com/Chatyusha/chaplman.vim.git" "repo/github.com/Chaty
 echo "--init.vim--------------------------------"
 echo ""
 echo "set runtimepath+=$(pwd)/repo/github.com/Chatyusha/chaplman.vim"
-echo "let g:plugins_dir = $(pwd)/repo/github.com"
+echo "let g:plugins_dir = \"$(pwd)/repo/github.com\""
 echo ""
 echo "------------------------------------------"
 
