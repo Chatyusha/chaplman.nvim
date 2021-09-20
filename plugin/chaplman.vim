@@ -11,16 +11,21 @@ let g:autocreate_chaplmanenv = get(g:,'autocreate_chaplmanenv',0)
 let g:autoload_chaplmanenv = get(g:,'autoload_chaplmanenv',1)
 
 
-if exists('g:plugins_dir') != 1
-  echo "ERROR!"
-  echo "'g:plugins_dir' is not defined"
-else
-  if g:autocreate_chaplmanenv == 1
-    call chaplman#default()
-  endif
-  if g:autoload_chaplmanenv == 1
-    call chaplman#loadsetting()
-  endif
-endif
+"if exists('g:plugins_dir') != 1
+"  echo "ERROR!"
+"  echo "'g:plugins_dir' is not defined"
+"else
+"  if g:autocreate_chaplmanenv == 1
+"    call chaplman#default()
+"  endif
+"  if g:autoload_chaplmanenv == 1
+"    call chaplman#loadsetting()
+"  endif
+"endif
+
+augroup chaplmanload
+  autocmd!
+  autocmd VimEnter * call chaplman#check()
+augroup END
 
 command! ChaplLoad call chaplman#loadsetting()

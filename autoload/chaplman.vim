@@ -1,6 +1,6 @@
 scriptencoding=utf-8
 
-"Where si this plugin?"
+"Where is this plugin?"
 let s:chaplpath = expand("<sfile>:p:h:h")
 
 function! chaplman#install(chaplman_root,status) abort
@@ -19,19 +19,24 @@ function! chaplman#default() abort
   endif
 endfunction
 
-function! chaplman#loadsetting() abort
-  let l:envroot = getcwd() . "/.chaplman"
+function! chaplman#loadsetting(for_global) abort
+  if a:for_global == 'global'
+    let l:envroot = get(g:,'chaplman_global',g:plugins_dir.'/.genv')
+  else
+    let l:envroot = getcwd() . "/.chaplman"
+  endif
   let l:settingsfile = l:envroot . "/settings.json"
 
-  if chaplman#formatchacker(l:settingsfile) != -1 &&
-        \ isdirectory(l:envroot) == 1 &&
-        \ glob(l:envroot . "/settings.json") != ""
+  if isdirectory(l:envroot) == 1
+    if chaplman#formatchacker(l:settingsfile) != -1 &&
+          \ glob(l:envroot . "/settings.json") != ""
 
-    call chaplman#loadplugin(l:envroot, l:settingsfile)
-    execute("runtime! ./plugin/*.vim")
-  else
-    echo "Error!"
-    echo "Cannot load settings"
+      call chaplman#loadplugin(l:envroot, l:settingsfile)
+      execute("runtime! ./plugin/*.vim")
+    else
+      echo "Error!"
+      echo "Cannot load settings"
+    endif
   endif
 endfunction
 
@@ -79,11 +84,10 @@ endfunction
 function chaplman#buildenv(envroot,plugins)
   "ALL ARGS ARE FULL-PATH FORMAT
   let l:envroot = a:envroot
-  let l:plgins = a:plugins
-  let l:shell_script = s:chaplpath . "/bin/chaplman/localenv.sh"
-  echo l:shell_script
-  echo s:chaplpath
-  call system([l:shell_script, l:envroot] + l:plgins)
+  let l:plugins = a:plugins
+  let l:run_script = s:chaplpath . "/bin/chaplman/python3/dircp.py"
+  let l:cmd = ["python3"] + l:plugins + [l:envroot]
+  call system(l:cmd)
   execute("helptags " . l:envroot . "/doc")
 endfunction
 
@@ -142,15 +146,24 @@ function! chaplman#formatchacker(settingsfilepath) abort
   return 1
 endfunction
 
-function! chaplman#init() abort
-endfunction
-
 "{{{ Add Plugin }}}"
 
-function! chaplman#add(repo, ...) abort
-  let l:branch = get(a:,a:0,"")
-  let l:binpath = s:chaplpath . "/bin/chaplman/addplugin.sh"
-  echo l:binpath
-  echo system([l:binpath,g:plugins_dir,a:repo,l:branch])
+function! chaplman#add(repo) abort
+  call chaplman#git#addplugin(a:repo)
 endfunction
 
+function! chaplman#check() abort
+  if exists('g:plugins_dir') != 1
+    echo "ERROR!"
+    echo "'g:plugins_dir' is not defined"
+  else
+    if g:autocreate_chaplmanenv == 1
+      call chaplman#default()
+    endif
+    if g:autoload_chaplmanenv == 1
+      call chaplman#loadsetting("global")
+      call chaplman#loadsetting("local")
+    endif
+  endif
+  echo "Checked"
+endfunction
